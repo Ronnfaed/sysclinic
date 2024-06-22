@@ -7,16 +7,22 @@ import './ConsultaMedica.css';
 
 
 const TodayDate = () => {
+  // Obtém a data de hoje
+  const today = new Date();
+
+  // Formata a data para dd/mm/yyyy
+  const formattedDate = `${today.getDate().toString().padStart(2, '0')}/${
+    (today.getMonth() + 1).toString().padStart(2, '0')
+  }/${today.getFullYear()}`;
+
+  return formattedDate
+
+};
 
 
-
-
-
-
-  
-}
 
 const ConsultaMedica = () => {
+
   const [formData, setFormData] = useState({
     nome: '',
     cpf: '',
@@ -42,6 +48,7 @@ const ConsultaMedica = () => {
     crmMedico: '',
     especialidade: '',
     observacoes: '',
+    dataConsulta: TodayDate(),
   });
 
   const [errors, setErrors] = useState({});
@@ -142,6 +149,7 @@ const ConsultaMedica = () => {
           nomeMedico:'',
           especialidade: '',
           observacoes: '',
+          dataConsulta: '',
         });
       } catch (error) {
         console.error('Erro ao enviar consulta: ', error);
@@ -170,7 +178,7 @@ const ConsultaMedica = () => {
         <div className="form-row">
           <div className="form-group">
             <label>Idade</label>
-            <input type="text" name="idade" value={formData.idade} onChange={handleChange} readOnly/>
+            <input type="text" name="idade" value={formData.idade} onChange={handleChange} />
             {errors.idade && <span className="error">{errors.idade}</span>}
           </div>
           <div className="form-group">
