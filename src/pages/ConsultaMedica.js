@@ -150,10 +150,17 @@ const ConsultaMedica = () => {
         </div>
         <h3 className="form-header">Informações do Médico</h3>
         <div className="form-row">
-          <div className="form-group">
-            <label>CRM Médico:</label>
+        <div className="form-group">
+            <label style = {{textAlign: "center"}}>CRM Médico:</label>
             <input type="text" name="crmMedico" value={formData.crmMedico} onChange={handleChange} />
             {errors.crmMedico && <span className="error">{errors.crmMedico}</span>}
+        </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label>Nome do Médico:</label>
+            <input type="text" name="nomeMedico" value={formData.nomeMedico} onChange={handleChange} />
+            {errors.nomeMedico && <span className="error">{errors.nomeMedico}</span>}
           </div>
           <div className="form-group">
             <label>Especialidade:</label>
@@ -223,44 +230,30 @@ const ConsultaMedica = () => {
         </div>
 
 
-        <h3 className="form-header">Perguntas Específicas</h3>
         <div className="form-row">
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="queixa" value={formData.queixa} onChange={handleChange} />
-            {errors.queixa && <span className="error">{errors.queixa}</span>}
+            <label>Sente dores no peito?</label>
+            <input type="text" name="doresPeito" value={formData.doresPeito} onChange={handleChange} />
+            {errors.doresPeito && <span className="error">{errors.doresPeito}</span>}
           </div>
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="doencas" value={formData.doencas} onChange={handleChange} />
-            {errors.doencas && <span className="error">{errors.doencas}</span>}
+            <label>Já sofreu desmaio?</label>
+            <input type="text" name="desmaio" value={formData.desmaio} onChange={handleChange} />
+            {errors.desmaio && <span className="error">{errors.desmaio}</span>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="historicoFamiliar" value={formData.historicoFamiliar} onChange={handleChange} />
-            {errors.historicoFamiliar && <span className="error">{errors.historicoFamiliar}</span>}
+            <label>Está com a vacinação em dia?</label>
+            <input type="text" name="vacinacao" value={formData.vacinacao} onChange={handleChange} />
+            {errors.vacinacao && <span className="error">{errors.vacinacao}</span>}
           </div>
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="medicamentos" value={formData.medicamentos} onChange={handleChange} />
-            {errors.medicamentos && <span className="error">{errors.medicamentos}</span>}
+            <label>Sofre de alguma alergia aguda?</label>
+            <input type="text" name="alergia" value={formData.alergia} onChange={handleChange} />
+            {errors.alergia && <span className="error">{errors.alergia}</span>}
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="cirurgias" value={formData.cirurgias} onChange={handleChange} />
-            {errors.cirurgias && <span className="error">{errors.cirurgias}</span>}
-          </div>
-          <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="fuma" value={formData.fuma} onChange={handleChange} />
-            {errors.fuma && <span className="error">{errors.fuma}</span>}
-          </div>
-        </div>
-
 
         <h3 className="form-header">Conclusão Médica</h3>
         <div className="form-row">
