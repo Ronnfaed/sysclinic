@@ -5,6 +5,17 @@ import InputMask from 'react-input-mask';
 import { db } from '../firebaseConfig';
 import './ConsultaMedica.css';
 
+
+const TodayDate = () => {
+
+
+
+
+
+
+  
+}
+
 const ConsultaMedica = () => {
   const [formData, setFormData] = useState({
     nome: '',
@@ -21,8 +32,13 @@ const ConsultaMedica = () => {
     fuma: '',
     bebe: '',
     atividadeFisica: '',
+    doresPeito:'',
+    desmaio:'',
+    vacinacao:'',
+    alergia:'',
     conclusao: '',
     receituario: '',
+    nomeMedico:'',
     crmMedico: '',
     especialidade: '',
     observacoes: '',
@@ -45,7 +61,7 @@ const ConsultaMedica = () => {
             setFormData({
               ...formData,
               nome: patientData.nome,
-              idade: patientData.idade,
+              idade: patientData.dataNascimento,
               sexo: patientData.sexo,
               cpf: value // Keep the CPF value as it is
             });
@@ -55,6 +71,28 @@ const ConsultaMedica = () => {
         console.error("Erro ao buscar paciente: ", error);
       }
     }
+    
+    if (name === 'crmMedico' && value.length === 6) { // Tamanho do CRM em caracteres
+      try {
+        const funcionariosQuery = query(collection(db, "funcionarios"), where("crmMedico", "==", value));
+        const querySnapshot = await getDocs(funcionariosQuery);
+
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
+            const medicoData = doc.data();
+            setFormData({
+              ...formData,
+              nomeMedico: medicoData.nome,
+              especialidade: medicoData.especialidade,
+              crmMedico: value,
+            });
+          });
+        }
+      } catch (error) {
+        console.error("Erro ao buscar paciente: ", error);
+      }
+    }
+
   };
 
   const validate = () => {
@@ -94,9 +132,14 @@ const ConsultaMedica = () => {
           fuma: '',
           bebe: '',
           atividadeFisica: '',
+          doresPeito:'',
+          desmaio:'',
+          vacinacao:'',
+          alergia:'',
           conclusao: '',
           receituario: '',
           crmMedico: '',
+          nomeMedico:'',
           especialidade: '',
           observacoes: '',
         });
@@ -152,7 +195,7 @@ const ConsultaMedica = () => {
         <div className="form-row">
         <div className="form-group">
             <label style = {{textAlign: "center"}}>CRM Médico:</label>
-            <input type="text" name="crmMedico" value={formData.crmMedico} onChange={handleChange} />
+            <input type="text" name="crmMedico" value={formData.crmMedico} onChange={handleChange} maxLength = "6"/>
             {errors.crmMedico && <span className="error">{errors.crmMedico}</span>}
         </div>
         </div>
