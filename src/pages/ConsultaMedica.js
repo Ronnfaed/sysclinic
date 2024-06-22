@@ -178,7 +178,7 @@ const ConsultaMedica = () => {
         <div className="form-row">
           <div className="form-group">
             <label>Idade</label>
-            <input type="text" name="idade" value={formData.idade} onChange={handleChange} />
+            <input type="text" name="idade" value={formData.idade} onChange={handleChange} readOnly/>
             {errors.idade && <span className="error">{errors.idade}</span>}
           </div>
           <div className="form-group">
