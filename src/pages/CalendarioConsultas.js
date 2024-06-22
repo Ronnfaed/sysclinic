@@ -184,8 +184,7 @@ const CalendarioConsultas = () => {
         <div className="main">
             <div className="title">
                 <h1>Calendário de Consultas</h1>
-                <h2>Etapa 1</h2>
-                <p>Escolha a faixa de tempo que você deseja verificar quais consultas estão marcadas.</p>
+                <h2>Escolha a faixa de tempo que você deseja verificar quais consultas estão marcadas.</h2>
                 <div className = "form-group" style = {{width: "100%", alignItems: "center"}}>
                     <label>Data Início:</label>
                     <input style = {{width: "300px"}}
@@ -207,8 +206,7 @@ const CalendarioConsultas = () => {
             </div>
 
             <div className="title" style={{ marginTop: '50px' }}>
-                <h2>Etapa 2</h2>
-                <p>Consulte e interaja com as consultas do dia, da maneira como preferir.</p>
+                <h2>Consulte e interaja com as consultas do dia, da maneira como preferir.</h2>
                 <table className="tabela1">
                     <thead>
                         <tr>

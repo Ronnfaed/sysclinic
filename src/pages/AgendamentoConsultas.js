@@ -90,26 +90,35 @@ const AgendamentoConsultas = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         // Verificar se a data é válida
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0); // Zerar as horas, minutos, segundos e milissegundos para a comparação
         const dataConsulta = new Date(data);
         dataConsulta.setHours(0, 0, 0, 0);
-
+    
         if (dataConsulta < hoje) {
             alert('A data da consulta só é válida se for para um dia futuro.');
             return;
         }
-
-        // Verificar se já existe uma consulta agendada no mesmo horário
-        const q = query(collection(db, "consultasAgendadas"), where("data", "==", data), where("hora", "==", hora));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-            alert('Já existe uma consulta agendada para este horário.');
+    
+        // Verificar se já existem três consultas agendadas para o mesmo horário
+        const consultaPorHorarioQuery = query(collection(db, "consultasAgendadas"), where("data", "==", data), where("hora", "==", hora));
+        const consultaPorHorarioSnapshot = await getDocs(consultaPorHorarioQuery);
+        if (consultaPorHorarioSnapshot.size >= 3) {
+            alert('Todos os três médicos especialistas estão ocupados neste horário, escolha outro.');
             return;
         }
-
+    
+        // Verificar se já existe uma consulta da mesma especialidade para o mesmo horário
+        const consultaPorEspecialidadeQuery = query(collection(db, "consultasAgendadas"), where("data", "==", data), where("hora", "==", hora), where("especialidade", "==", especialidade));
+        const consultaPorEspecialidadeSnapshot = await getDocs(consultaPorEspecialidadeQuery);
+        if (!consultaPorEspecialidadeSnapshot.empty) {
+            alert(`Já existe uma consulta de ${especialidade} agendada para este horário.`);
+            return;
+        }
+    
+        // Se passou pelas verificações, proceder com o agendamento
         const consulta = {
             cpfConsulta: userData.cpf,
             nome: userData.nome,
@@ -119,17 +128,14 @@ const AgendamentoConsultas = () => {
             motivo,
             especialidade,
             formaPagamento,
-            confirmacao: false, // Campo "confirmação" adicionado com valor inicial "false"
-            preço: null, // Campo "preço" adicionado com valor inicial "null"
+            confirmacao: false,
+            preço: null,
         };
-
+    
         try {
             await addDoc(collection(db, 'consultasAgendadas'), consulta);
             alert('Consulta agendada com sucesso!');
             // Limpar os campos do formulário
-            setCpfconsulta('');
-            setNome('');
-            setTelefone('');
             setData('');
             setHora('');
             setMotivo('');
@@ -145,8 +151,7 @@ const AgendamentoConsultas = () => {
         <div className="main">
             <div className="title">
                 <h1>Agendamento de Consultas</h1>
-                <h2>Etapa 1</h2>
-                <p>Localize o cliente através do CPF e verifique se os dados estão corretos.</p>
+                <h2>Localize o cliente através do CPF e verifique se os dados estão corretos.</h2>
             </div>
 
             <div className="idPaciente">
@@ -220,8 +225,7 @@ const AgendamentoConsultas = () => {
             )}
 
             <div className="title" style={{ marginTop: '50px' }}>
-                <h2>Etapa 2</h2>
-                <p>Preencha o formulário abaixo e oficialize o agendamento clicando em confirmar</p>
+                <h2>Preencha o formulário abaixo e oficialize o agendamento clicando em confirmar</h2>
             </div>
 
             <div className="formConsulta">
@@ -238,13 +242,32 @@ const AgendamentoConsultas = () => {
                     </div>
                     <div className="form-group">
                         <label>Hora</label>
-                        <input
+                        <select
                             type="time"
                             name="hora"
                             value={hora}
                             onChange={(e) => setHora(e.target.value)}
                             required
-                        />
+                        >
+                            <option value="">Escolha um Horário</option>
+                            <option value="8:30">8:30</option>
+                            <option value="9:00">9:00</option>
+                            <option value="9:30">9:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Motivo</label>
