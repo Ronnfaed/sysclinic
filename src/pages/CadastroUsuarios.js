@@ -243,6 +243,7 @@ const CadastroUsuarios = () => {
                                         <option value="">Selecione</option>
                                         <option value="atendente">Atendente</option>
                                         <option value="medico">Médico</option>
+                                        <option value="admin">Admin</option>
                                     </Field>
                                     <ErrorMessage name="tipoFuncionario" component="div" className="cadUsuario-error-message" />
                                 </div>
