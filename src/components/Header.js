@@ -3,6 +3,7 @@ import { FaBars } from 'react-icons/fa';
 import './Header.css';
 import userPlaceholder from '../assets/user-placeholder.png';
 import { useNavigate } from 'react-router-dom';
+import homeIcon from '../assets/home-white.png'
 
 const Header = ({ toggleSidebar }) => {
     const [user, setUser] = useState(null);
@@ -37,6 +38,7 @@ const Header = ({ toggleSidebar }) => {
         <header className="header">
             <FaBars className="menu-icon" onClick={toggleSidebar} />
             <div className="user-info">
+                <img src={homeIcon} alt="Ícone de casa" className="homeIcon" onClick={() => handleNavigate('home/home-page')}/>
                 <img src={user ? user.profilePic : userPlaceholder} alt="Usuário" />
                 <div className="user-dropdown">
                     <span onClick={toggleDropdown} className="user-name">{user ? user.nome : 'Usuário'}</span>

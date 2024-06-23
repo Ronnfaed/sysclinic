@@ -7,7 +7,8 @@ import CalendarioConsultas from './CalendarioConsultas';
 import ConsultaMedica from './ConsultaMedica';
 import HistoricoPaciente from './HistoricoPaciente';
 import CadastroUsuarios from './CadastroUsuarios';
-import ReceitaServicos from './ReceitaServicos';
+import GerenciamentoUsuarios from './GerenciamentoUsuarios';
+import HomePage from './components/HomePage'
 import './Home.css';
 
 const Home = ({ tipoFuncionario }) => {
@@ -22,7 +23,8 @@ const Home = ({ tipoFuncionario }) => {
             <Route path="consulta-medica" element={<ConsultaMedica />} />
             <Route path="historico-paciente" element={<HistoricoPaciente />} />
             <Route path="cadastro-usuarios" element={<CadastroUsuarios />} />
-            <Route path="receita-servicos" element={<ReceitaServicos />} />
+            <Route path="gerenciamento-usuarios" element={<GerenciamentoUsuarios />} />
+            <Route path="home-page" element={<HomePage />} />
           </Routes>
         );
       case 'atendente':
@@ -31,6 +33,7 @@ const Home = ({ tipoFuncionario }) => {
             <Route path="cadastro-pacientes" element={<CadastroPacientes />} />
             <Route path="agendamento-consultas" element={<AgendamentoConsultas />} />
             <Route path="calendario-consultas" element={<CalendarioConsultas />} />
+            <Route path="home-page" element={<HomePage />} />
           </Routes>
         );
       case 'medico':
@@ -39,6 +42,7 @@ const Home = ({ tipoFuncionario }) => {
             <Route path="calendario-consultas" element={<CalendarioConsultas />} />
             <Route path="consulta-medica" element={<ConsultaMedica />} />
             <Route path="historico-paciente" element={<HistoricoPaciente />} />
+            <Route path="home-page" element={<HomePage />} />
           </Routes>
         );
       default:

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserPlus, FaCalendarAlt, FaStethoscope, FaHistory, FaUserMd, FaDollarSign } from 'react-icons/fa';
+import { FaUserPlus, FaCalendarAlt, FaStethoscope, FaHistory, FaUserMd, FaUser } from 'react-icons/fa';
 import './Sidebar.css';
 import logo from '../images/logo_+Saude.png';
 
@@ -72,10 +72,10 @@ const Sidebar = ({ isOpen, toggleSidebar, tipoFuncionario }) => {
                     </Link>
                 </li>
                 <hr className="sidebar-divider"></hr>
-                <li className={getDisabledClass('/home/receita-servicos')}>
-                    <Link to="/home/receita-servicos">
-                        <FaDollarSign className="sidebar-icon" />
-                        {isOpen && <span>Receita dos Serviços Prestados</span>}
+                <li className={getDisabledClass('/home/gerenciamento-usuarios')}>
+                    <Link to="/home/gerenciamento-usuarios">
+                        <FaUser className="sidebar-icon" />
+                        {isOpen && <span>Gerenciamento de Usuários</span>}
                     </Link>
                 </li>
             </ul>

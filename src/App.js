@@ -12,11 +12,12 @@ import CalendarioConsultas from './pages/CalendarioConsultas';
 import ConsultaMedica from './pages/ConsultaMedica';
 import HistoricoPaciente from './pages/HistoricoPaciente';
 import CadastroUsuarios from './pages/CadastroUsuarios';
-import ReceitaServicos from './pages/ReceitaServicos';
+import GerenciamentoUsuarios from './pages/GerenciamentoUsuarios';
 import ResetPassword from './components/ResetPassword';
 import DadosPessoais from './components/DadosPessoais';
 import AlterarSenha from './components/AlterarSenha';
 import ProtectedRoute from './components/ProtectedRoute';
+import HomePageT from './components/HomePage'
 import './App.css';
 
 const App = () => {
@@ -142,7 +143,8 @@ const HomePage = ({ tipoFuncionario }) => {
                         <Route path="consulta-medica" element={<ConsultaMedica />} />
                         <Route path="historico-paciente" element={<HistoricoPaciente />} />
                         <Route path="cadastro-usuarios" element={<CadastroUsuarios />} />
-                        <Route path="receita-servicos" element={<ReceitaServicos />} />
+                        <Route path="gerenciamento-usuarios" element={<GerenciamentoUsuarios />} />
+                        <Route path="home-page" element={<HomePageT />} />
                     </Routes>
                 );
             case 'atendente':
@@ -151,6 +153,7 @@ const HomePage = ({ tipoFuncionario }) => {
                         <Route path="cadastro-pacientes" element={<CadastroPacientes />} />
                         <Route path="agendamento-consultas" element={<AgendamentoConsultas />} />
                         <Route path="calendario-consultas" element={<CalendarioConsultas />} />
+                        <Route path="home-page" element={<HomePageT />} />
                     </Routes>
                 );
             case 'medico':
@@ -159,6 +162,7 @@ const HomePage = ({ tipoFuncionario }) => {
                         <Route path="calendario-consultas" element={<CalendarioConsultas />} />
                         <Route path="consulta-medica" element={<ConsultaMedica />} />
                         <Route path="historico-paciente" element={<HistoricoPaciente />} />
+                        <Route path="home-page" element={<HomePageT />} />
                     </Routes>
                 );
             default:

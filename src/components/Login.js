@@ -33,7 +33,7 @@ const Login = ({ onLogin }) => {
                 const user = querySnapshot.docs[0].data();
                 onLogin(user);
                 localStorage.setItem('user', JSON.stringify(user));
-                navigate('/home');
+                navigate('/home/home-page');
             } else {
                 setError('Usuário ou senha incorretos');
                 setIsError(true);
