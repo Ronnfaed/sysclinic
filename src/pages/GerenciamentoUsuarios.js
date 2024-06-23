@@ -146,6 +146,7 @@ const GerenciamentoUsuarios = () => {
                                     <th>CPF</th>
                                     <th>Email</th>
                                     <th>Telefone</th>
+                                    <th>Data de Nascimento</th>
                                     <th>Editar</th>
                                     <th>Remover</th>
                                 </tr>
@@ -157,6 +158,7 @@ const GerenciamentoUsuarios = () => {
                                         <td>{paciente.cpf}</td>
                                         <td>{paciente.email}</td>
                                         <td>{paciente.celular}</td>
+                                        <td>{paciente.nascimento}</td>
                                         <td><button onClick={() => handleEditarUsuario({ ...paciente, tipo: 'paciente' })}>Editar</button></td>
                                         <td><button onClick={() => handleDeleteUsuario(paciente.id, 'paciente')}>Remover</button></td>
                                     </tr>
