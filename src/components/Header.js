@@ -46,7 +46,7 @@ const Header = ({ toggleSidebar }) => {
                         <div className="dropdown-content">
                             <button onClick={() => handleNavigate('/dados-pessoais')}>Dados pessoais</button>
                             <button onClick={() => handleNavigate('/alterar-senha')}>Alterar senha</button>
-                            <button onClick={handleLogout}>Sair</button>
+                            {/* <button onClick={handleLogout}>Sair</button> */}
                         </div>
                     )}
                 </div>
