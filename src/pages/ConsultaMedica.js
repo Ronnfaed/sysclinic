@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import InputMask from 'react-input-mask';
 import { db } from '../firebaseConfig';
+import { differenceInYears } from 'date-fns'; // Importando a função para calcular a diferença em anos
 import './ConsultaMedica.css';
 
 const hoje = new Date();
@@ -12,6 +13,13 @@ const mes = (hoje.getMonth() + 1).toString().padStart(2, '0'); // Obtém o mês 
 const ano = hoje.getFullYear(); // Obtém o ano com quatro dígitos
 
 const dataFormatada = `${dia}/${mes}/${ano}`;
+
+const calcularIdade = (dataNascimento) => {
+  const hoje = new Date(); // Obtém a data de hoje
+  const idade = differenceInYears(hoje, new Date(dataNascimento));
+  return idade;
+};
+
 
 const ConsultaMedica = () => {
 
@@ -60,7 +68,7 @@ const ConsultaMedica = () => {
             setFormData({
               ...formData,
               nome: patientData.nome,
-              idade: patientData.dataNascimento,
+              idade: calcularIdade(patientData.nascimento),
               sexo: patientData.sexo,
               cpf: value // Keep the CPF value as it is
             });
@@ -170,7 +178,7 @@ const ConsultaMedica = () => {
         <div className="form-row">
           <div className="form-group">
             <label>Idade</label>
-            <input type="text" name="idade" value={formData.idade} onChange={handleChange} />
+            <input type="text" name="idade" value={formData.idade} onChange={handleChange} readOnly/>
             {errors.idade && <span className="error">{errors.idade}</span>}
           </div>
           <div className="form-group">
