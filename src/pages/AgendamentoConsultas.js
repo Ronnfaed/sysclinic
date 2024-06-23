@@ -275,7 +275,7 @@ const AgendamentoConsultas = () => {
 
     return (
         <div className="agendamentoConsulta-main">
-
+            <h1 className="agendamentoConsulta-title" style = {{justifyContent: 'center'}}>Agendamento de Consultas</h1>
             <CpfSearch cpf={cpf} handleChange={handleChange} cpfStatusMessage={cpfStatusMessage} cpfStatusClass={cpfStatusClass} />
 
             {userData && (

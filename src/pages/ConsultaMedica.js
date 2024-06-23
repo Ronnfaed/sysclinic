@@ -152,7 +152,7 @@ const ConsultaMedica = () => {
 
   return (
     <div className="container">
-      <h2 className="form-header">Consulta Médica</h2>
+      <h2 className="tituloh1">Consulta Médica</h2>
       <h3 className="form-header">Informações básicas do paciente</h3>
       <form onSubmit={handleSubmit} className="form-body">
         <div className="form-row">

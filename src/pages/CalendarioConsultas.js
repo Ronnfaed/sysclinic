@@ -191,8 +191,8 @@ const CalendarioConsultas = () => {
 
     return (
         <div className="main">
+            <h1 className="calendarioConsulta-title" style = {{justifyContent: 'center'}}>Calendário de Consultas</h1>
             <div className="title">
-                <h1>Calendário de Consultas</h1>
                 <h2>Escolha a faixa de tempo que você deseja verificar quais consultas estão marcadas.</h2>
                 <div className = "form-group" style = {{width: "100%", alignItems: "center"}}>
                     <label>Data Início:</label>

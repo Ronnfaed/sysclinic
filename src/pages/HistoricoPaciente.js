@@ -101,7 +101,7 @@ const HistoricoPaciente = () => {
   return (
     <div className="container">
       <form className="historico-paciente-form" onSubmit={handleSubmit}>
-        <h2 className="form-header">Histórico do Paciente</h2>
+        <h2 className="tituloh1">Histórico do Paciente</h2>
         <div className="form-body">
           <div className="form-group full-width">
             <label>CPF</label>

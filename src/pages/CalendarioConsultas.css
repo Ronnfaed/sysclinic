@@ -63,7 +63,7 @@
 }
 
 .tabela1 th {
-    background-color: #007bff;
+    background-color: #16a086;
     color: white;
     font-weight: bold;
 }
@@ -168,4 +168,16 @@
 
 .modal-buttons button:hover {
     background-color: #0056b3;
+}
+
+.calendarioConsulta-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #156657e5;
+    text-align: center;
+    font-weight: bold;
+    height: 25px;
+    text-align: center;
+    align-content: center;
 }

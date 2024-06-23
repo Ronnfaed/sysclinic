@@ -56,6 +56,9 @@
 .agendamentoConsulta-title h1 {
     font-size: 22px;
     margin-bottom: 10px;
+    color: #16a086;
+    text-align: center;
+    font-weight: bold;
 }
 
 .agendamentoConsulta-title h2 {

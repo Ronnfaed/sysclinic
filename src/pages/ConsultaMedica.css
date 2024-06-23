@@ -74,3 +74,12 @@
   font-weight: bold;  
 
 }
+
+.tituloh1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: white;
+  background-color:#147a66;
+  text-align: center;
+  font-weight: bold;
+}
