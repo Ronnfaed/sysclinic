@@ -1,0 +1,34 @@
+/* HomePage.css */
+
+.homepage-container {
+    display: flex;
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    padding: 50px;
+    background-color: #f0f0f0; /* Cor de fundo para destacar a área */
+}
+
+.welcome-text {
+    text-align: center; /* Alinha o texto ao centro */
+    flex: 1; /* Ocupa 1 parte do espaço disponível */
+    padding: 20px;
+}
+
+.welcome-text h1 {
+    font-size: 3em; /* Tamanho grande para o título */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+}
+
+.image-container {
+    flex: 1; /* Ocupa 1 parte do espaço disponível */
+    max-width: 50%; /* Largura máxima para a imagem */
+    overflow: hidden; /* Oculta qualquer parte da imagem que extrapolar */
+    border-radius: 10px; /* Borda arredondada */
+}
+
+.image-container img {
+    width: 100%; /* Ocupa todo o espaço disponível */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaçamento extra abaixo da imagem */
+    border-radius: 10px; /* Borda arredondada */
+}

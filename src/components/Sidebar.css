@@ -75,3 +75,8 @@
 .sidebar.open .sidebar-divider {
     border-color: #d3d3d3;
 }
+.sidebar ul li.disabled a {
+    color: #d3d3d3; /* Cinza claro */
+    pointer-events: none; /* Desabilita cliques */
+    cursor: not-allowed; /* Muda o cursor para indicar que está desabilitado */
+  }

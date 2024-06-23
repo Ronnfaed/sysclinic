@@ -1,0 +1,92 @@
+:root {
+    --main-bg-color: #f9f9f9;
+    --btn-bg-color: #16a086;
+    --btn-hover-bg-color: #147a66;
+    --error-color: #721c24;
+    --error-bg-color: #f8d7da;
+    --error-border-color: #f5c6cb;
+    --success-color: #155724;
+    --success-bg-color: #d4edda;
+    --success-border-color: #c3e6cb;
+    --border-color: #ddd;
+    --input-padding: 10px;
+    --border-radius: 5px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+.login-clinic-logo {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border-radius: 20px; /* Faz as caixas de entrada arredondadas */
+}
+
+.login-container button {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--btn-bg-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: var(--btn-hover-bg-color);
+}
+
+.login-buttons-container {
+    display: flex;
+    justify-content: center; /* Centraliza o botão */
+    width: 300px;
+}
+
+.login-forgot-password {
+    color: #aaa; /* Cor cinza claro */
+    font-size: 14px; /* Tamanho menor */
+    text-align: center; /* Alinhado ao centro */
+    cursor: pointer; /* Transforma o cursor em uma mãozinha ao passar sobre o link */
+}
+
+.login-forgot-password:hover {
+    text-decoration: underline; /* Sublinha o texto ao passar sobre o link */
+}
+
+.login-reset-password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login-error-message {
+    color: var(--error-color);
+    font-size: 14px;
+    text-align: center;
+    margin: 10px 0;
+}

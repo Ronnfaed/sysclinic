@@ -1,6 +1,5 @@
-// CadastroUsuarios.js
 import React, { useState } from 'react';
-import './CadastroPacientes.css';
+import './CadastroUsuarios.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import InputMask from 'react-input-mask';
 import { db } from '../firebaseConfig';
@@ -88,7 +87,7 @@ const CadastroUsuarios = () => {
             setFeedbackType('error');
             return;
         }
-        // Se CPF e email não existem, salvar novo documento
+        // Se CPF, email, e matrícula não existem, salvar novo documento
         try {
             const docRef = await addDoc(funcionariosRef, {
                 ...values,
@@ -105,31 +104,31 @@ const CadastroUsuarios = () => {
     };
 
     return (
-        <div className="container">
-            <div className="form-header">
-                <div className="profile-section">
+        <div className="cadUsuario-container">
+            <div className="cadUsuario-form-header">
+                <div className="cadUsuario-profile-section">
                     {profilePic ? (
-                        <img src={profilePic} alt="Profile" className="profile-pic" />
+                        <img src={profilePic} alt="Profile" className="cadUsuario-profile-pic" />
                     ) : (
-                        <div className="profile-placeholder">
-                            <span>Sem foto</span>
+                        <div className="cadUsuario-profile-placeholder">
+
                         </div>
                     )}
-                    <div className="btn-container">
-                        <label className="btn include-photo-btn">
+                    <div className="cadUsuario-btn-container">
+                        <label className="cadUsuario-btn cadUsuario-include-photo-btn">
                             Incluir foto
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={handleProfilePicChange}
-                                className="profile-pic-input"
+                                className="cadUsuario-profile-pic-input"
                             />
                         </label>
                     </div>
                 </div>
             </div>
             {feedbackMessage && (
-                <div className={`feedback-message ${feedbackType}`}>
+                <div className={`cadUsuario-feedback-message ${feedbackType}`}>
                     {feedbackMessage}
                 </div>
             )}
@@ -143,7 +142,10 @@ const CadastroUsuarios = () => {
                     raca: '',
                     cpf: '',
                     matricula: '',
-                    tipoFuncionario: ''
+                    tipoFuncionario: '',
+                    crm: '', // Adicionamos o campo CRM
+                    especialidade: '', // Adicionamos o campo Especialidade
+                    senha: ''
                 }}
                 validate={(values) => {
                     const errors = {};
@@ -180,6 +182,13 @@ const CadastroUsuarios = () => {
                     if (!values.tipoFuncionario) {
                         errors.tipoFuncionario = 'Campo obrigatório';
                     }
+                    if (!values.senha) {
+                        errors.senha = 'Campo obrigatório';
+                    }
+                    // Validar CRM apenas se for médico
+                    if (values.tipoFuncionario === 'medico' && !values.crm) {
+                        errors.crm = 'Campo obrigatório para médicos';
+                    }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -187,17 +196,17 @@ const CadastroUsuarios = () => {
                     setSubmitting(false);
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, values, setFieldValue }) => (
                     <Form>
-                        <div className="form-body-container">
-                            <h3 className="form-section-title">Dados do funcionário</h3>
-                            <div className="form-body">
-                                <div className="form-group">
+                        <div className="cadUsuario-form-body-container">
+                            <h3 className="cadUsuario-form-section-title">Dados do funcionário</h3>
+                            <div className="cadUsuario-form-body">
+                                <div className="cadUsuario-form-group">
                                     <label>Nome civil</label>
                                     <Field type="text" name="nome" placeholder="Preencha o nome do funcionário" />
-                                    <ErrorMessage name="nome" component="div" className="error-message" />
+                                    <ErrorMessage name="nome" component="div" className="cadUsuario-error-message" />
                                 </div>
-                                <div className="form-group">
+                                <div className="cadUsuario-form-group">
                                     <label>Sexo</label>
                                     <Field as="select" name="sexo">
                                         <option value="">Selecione</option>
@@ -205,13 +214,13 @@ const CadastroUsuarios = () => {
                                         <option value="feminino">Feminino</option>
                                         <option value="outro">Outro</option>
                                     </Field>
-                                    <ErrorMessage name="sexo" component="div" className="error-message" />
+                                    <ErrorMessage name="sexo" component="div" className="cadUsuario-error-message" />
                                 </div>
-                                <div className="form-group">
+                                <div className="cadUsuario-form-group">
                                     <label>Nome social</label>
                                     <Field type="text" name="nomeSocial" placeholder="Preencha o nome social do funcionário, se necessário" />
                                 </div>
-                                <div className="form-group">
+                                <div className="cadUsuario-form-group">
                                     <label>Raça</label>
                                     <Field as="select" name="raca">
                                         <option value="">Selecione</option>
@@ -221,45 +230,69 @@ const CadastroUsuarios = () => {
                                         <option value="indigena">Indígena</option>
                                         <option value="amarelo">Amarelo</option>
                                     </Field>
-                                    <ErrorMessage name="raca" component="div" className="error-message" />
+                                    <ErrorMessage name="raca" component="div" className="cadUsuario-error-message" />
                                 </div>
-                                <div className="form-group">
+                                <div className="cadUsuario-form-group">
                                     <label>CPF</label>
                                     <Field name="cpf" render={({ field }) => <InputMask {...field} mask="999.999.999-99" />} />
-                                    <ErrorMessage name="cpf" component="div" className="error-message" />
+                                    <ErrorMessage name="cpf" component="div" className="cadUsuario-error-message" />
                                 </div>
-                                <div className="form-group">
-                                    <label>Matrícula</label>
-                                    <Field type="text" name="matricula" placeholder="Preencha a matrícula do funcionário" />
-                                    <ErrorMessage name="matricula" component="div" className="error-message" />
-                                </div>
-                                <div className="form-group">
+                                <div className="cadUsuario-form-group">
                                     <label>Tipo de funcionário</label>
                                     <Field as="select" name="tipoFuncionario">
                                         <option value="">Selecione</option>
                                         <option value="atendente">Atendente</option>
                                         <option value="medico">Médico</option>
                                     </Field>
-                                    <ErrorMessage name="tipoFuncionario" component="div" className="error-message" />
+                                    <ErrorMessage name="tipoFuncionario" component="div" className="cadUsuario-error-message" />
+                                </div>
+                                <div className="cadUsuario-form-group">
+                                    <label>Matrícula</label>
+                                    <Field type="text" name="matricula" maxLength={9} placeholder="Preencha a matrícula do funcionário" />
+                                    <ErrorMessage name="matricula" component="div" className="cadUsuario-error-message" />
+                                </div>
+                                {values.tipoFuncionario === 'medico' && ( // Mostrar CRM apenas se for médico
+                                    <div className="cadUsuario-form-group">
+                                        <label>CRM</label>
+                                        <Field type="string" name="crm" maxLength={6} render={({ field }) => <InputMask {...field} mask="999999" />} placeholder="Preencha o CRM caso o funcionário seja médico" />
+                                        <ErrorMessage name="crm" component="div" className="cadUsuario-error-message" />
+                                    </div>
+                                )}
+                                {values.tipoFuncionario === 'medico' && ( // Mostrar Especialidade apenas se for médico
+                                    <div className="cadUsuario-form-group">
+                                        <label>Especialidade</label>
+                                        <Field as="select" name="especialidade">
+                                            <option value="">Selecione uma especialidade</option>
+                                            <option value="Clínico Geral">Clínico Geral</option>
+                                            <option value="Pediatra">Pediatra</option>
+                                            <option value="Cardiologia">Cardiologia</option>
+                                        </Field>
+                                        <ErrorMessage name="especialidade" component="div" className="cadUsuario-error-message" />
+                                    </div>
+                                )}
+                                <div className="cadUsuario-form-group">
+                                    <label>Senha</label>
+                                    <Field type="password" name="senha" placeholder="Preencha a senha do funcionário" />
+                                    <ErrorMessage name="senha" component="div" className="cadUsuario-error-message" />
                                 </div>
                             </div>
                         </div>
-                        <div className="form-body-container">
-                            <h3 className="form-section-title">Formas de contato</h3>
-                            <div className="form-body">
-                                <div className="form-group">
+                        <div className="cadUsuario-form-body-container">
+                            <h3 className="cadUsuario-form-section-title">Formas de contato</h3>
+                            <div className="cadUsuario-form-body">
+                                <div className="cadUsuario-form-group">
                                     <label>Email</label>
                                     <Field type="email" name="email" placeholder="Preecha o e-mail do funcionário" />
-                                    <ErrorMessage name="email" component="div" className="error-message" />
+                                    <ErrorMessage name="email" component="div" className="cadUsuario-error-message" />
                                 </div>
-                                <div className="form-group">
+                                <div className="cadUsuario-form-group">
                                     <label>Celular</label>
                                     <Field name="celular" render={({ field }) => <InputMask {...field} mask="(99) 99999-9999" />} />
-                                    <ErrorMessage name="celular" component="div" className="error-message" />
+                                    <ErrorMessage name="celular" component="div" className="cadUsuario-error-message" />
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn" disabled={isSubmitting}>
+                        <button type="submit" className="cadUsuario-save-btn" disabled={isSubmitting}>
                             Salvar
                         </button>
                     </Form>

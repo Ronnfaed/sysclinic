@@ -1,0 +1,75 @@
+/* AlterarSenha.css */
+
+.alterar-senha-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--main-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: serif;
+    font-size: 14px;
+}
+
+.alterar-senha-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.alterar-senha-container input[type="email"] {
+    width: 96.5%;
+    padding: var(--input-padding);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+}
+
+.alterar-senha-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--btn-bg-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.alterar-senha-container button:hover {
+    background-color: var(--btn-hover-bg-color);
+}
+
+.alterar-senha-container p {
+    text-align: center;
+    color: #333;
+    margin-top: 10px;
+}
+
+.alterar-senha-feedback-message {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.alterar-senha-feedback-message.success {
+    background-color: var(--success-bg-color);
+    color: var(--success-color);
+    border: 1px solid var(--success-border-color);
+}
+
+.alterar-senha-feedback-message.error {
+    background-color: var(--error-bg-color);
+    color: var(--error-color);
+    border: 1px solid var(--error-border-color);
+}
+
+.alterar-senha-error-message {
+    color: red;
+    text-decoration: underline;
+    font-size: 12px;
+    font-family: serif;
+}
+
+

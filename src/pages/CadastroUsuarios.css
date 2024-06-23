@@ -1,4 +1,3 @@
-/* CadastroPacientes.css */
 :root {
     --main-bg-color: #f9f9f9;
     --btn-bg-color: #16a086;
@@ -14,7 +13,7 @@
     --border-radius: 5px;
 }
 
-.cadPaciente-container {
+.cadUsuario-container {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
@@ -24,15 +23,15 @@
     font-size: 14px;
 }
 
-.cadPaciente-form-header,
-.cadPaciente-btn-container {
+.cadUsuario-form-header,
+.cadUsuario-btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.cadPaciente-profile-section {
+.cadUsuario-profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,15 +40,15 @@
     position: relative;
 }
 
-.cadPaciente-profile-pic,
-.cadPaciente-profile-placeholder {
+.cadUsuario-profile-pic,
+.cadUsuario-profile-placeholder {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
-.cadPaciente-profile-placeholder {
+.cadUsuario-profile-placeholder {
     background: #ccc;
     display: flex;
     justify-content: center;
@@ -57,7 +56,7 @@
     position: relative;
 }
 
-.cadPaciente-profile-placeholder span {
+.cadUsuario-profile-placeholder span {
     position: absolute;
     font-size: 12px;
     bottom: -20px;
@@ -65,8 +64,8 @@
     transform: translateX(-50%);
 }
 
-.cadPaciente-profile-pic-input,
-.cadPaciente-include-photo-btn input {
+.cadUsuario-profile-pic-input,
+.cadUsuario-include-photo-btn input {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -76,16 +75,16 @@
     left: 0;
 }
 
-.cadPaciente-btn,
-.cadPaciente-include-photo-btn {
+.cadUsuario-btn,
+.cadUsuario-include-photo-btn {
     background: var(--btn-bg-color);
     color: #fff;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
     text-align: center;
-    width: 100%;
-    height: 30px;
+    width: 143%;
+    height: 35px;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -93,31 +92,47 @@
     position: relative;
 }
 
-.cadPaciente-btn:hover,
-.cadPaciente-include-photo-btn:hover {
+.cadUsuario-btn:hover,
+.cadUsuario-include-photo-btn:hover {
     background: var(--btn-hover-bg-color);
 }
 
-.cadPaciente-save-btn {
-    height: 35px;
-    font-size: 14px;
+/* Nova classe específica para o botão "Salvar" */
+.cadUsuario-save-btn {
+    background: var(--btn-bg-color); /* Cor de fundo diferente */
+    color: white; /* Cor do texto */
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    height: 35px; /* Altura específica */
+    font-size: 14px; /* Tamanho da fonte específico */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.cadPaciente-btn-container {
+.cadUsuario-save-btn:hover {
+    background: var(--btn-hover-bg-color); /* Cor de fundo ao passar o mouse */
+}
+
+.cadUsuario-btn-container {
     flex-direction: column;
     margin-top: 10px;
     width: 100%;
     text-align: center;
 }
 
-.cadPaciente-form-body {
+.cadUsuario-form-body {
     display: grid;
     margin-top: 10px;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.cadPaciente-form-body-container {
+.cadUsuario-form-body-container {
     border: 1.5px dashed #aaa;
     background: #FFFFFF;
     padding: 20px;
@@ -126,28 +141,28 @@
     position: relative;
 }
 
-.cadPaciente-form-group {
+.cadUsuario-form-group {
     display: flex;
     flex-direction: column;
 }
 
-.cadPaciente-form-group label {
+.cadUsuario-form-group label {
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.cadPaciente-form-group input,
-.cadPaciente-form-group select {
+.cadUsuario-form-group input,
+.cadUsuario-form-group select {
     padding: var(--input-padding);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
 }
 
-.cadPaciente-form-group input:disabled {
+.cadUsuario-form-group input:disabled {
     background: #e9e9e9;
 }
 
-.cadPaciente-form-section-title {
+.cadUsuario-form-section-title {
     color: #777;
     margin-top: 0;
     position: absolute;
@@ -157,33 +172,28 @@
     padding: 0 10px;
 }
 
-.cadPaciente-feedback-message {
+.cadUsuario-feedback-message {
     margin: 20px 0;
     padding: 10px;
     border-radius: var(--border-radius);
     text-align: center;
 }
 
-.cadPaciente-feedback-message.success {
+.cadUsuario-feedback-message.success {
     background-color: var(--success-bg-color);
     color: var(--success-color);
     border: 1px solid var(--success-border-color);
 }
 
-.cadPaciente-feedback-message.error {
+.cadUsuario-feedback-message.error {
     background-color: var(--error-bg-color);
     color: var(--error-color);
     border: 1px solid var(--error-border-color);
 }
 
-.cadPaciente-error-message {
-    color: red; /* Define a cor vermelha */
-    text-decoration: underline; /* Sublinha o texto */
-    font-size: 12px; /* Define o tamanho da fonte */
+.cadUsuario-error-message {
+    color: red;
+    text-decoration: underline;
+    font-size: 12px;
     font-family: serif;
-}
-
-.cadPaciente-date-picker{
-    width: 200%;
-    text-align: center;
 }

@@ -59,11 +59,6 @@ const CalendarioConsultas = () => {
         fetchConsultas();
     }, [dataInicio, dataFim]);
 
-    const formatarData = (data) => {
-        const [ano, mes, dia] = data.split('-');
-        return `${dia}/${mes}/${ano}`;
-    };
-
     const handleDeleteConsulta = async (id) => {
         // Perguntar ao usuário se ele tem certeza
         const confirmDelete = window.confirm("Tem certeza que deseja deletar esta consulta?");
@@ -121,6 +116,19 @@ const CalendarioConsultas = () => {
                     return; // Retorna sem continuar se a validação falhar
                 }
                 
+                // Verifica se já existe uma consulta agendada para o mesmo dia, hora e especialidade
+                const consultaConflitante = consultas.find(consulta => (
+                    consulta.id !== consultaSelecionada.id && // Exclui a própria consulta da comparação
+                    consulta.data === formEdicao.data &&
+                    consulta.hora === formEdicao.hora &&
+                    consulta.especialidade === formEdicao.especialidade
+                ));
+                
+                if (consultaConflitante) {
+                    alert("Já existe uma consulta agendada para o mesmo dia, horário e especialidade.");
+                    return; // Retorna sem continuar se houver conflito
+                }
+                
                 const consultaRef = doc(db, "consultasAgendadas", consultaSelecionada.id);
                 await updateDoc(consultaRef, {
                     data: formEdicao.data,
@@ -148,6 +156,7 @@ const CalendarioConsultas = () => {
             }
         }
     };
+    
     
 
     const handleCancelarEdicao = () => {
@@ -182,8 +191,8 @@ const CalendarioConsultas = () => {
 
     return (
         <div className="main">
+            <h1 className="calendarioConsulta-title" style = {{justifyContent: 'center'}}>Calendário de Consultas</h1>
             <div className="title">
-                <h1>Calendário de Consultas</h1>
                 <h2>Escolha a faixa de tempo que você deseja verificar quais consultas estão marcadas.</h2>
                 <div className = "form-group" style = {{width: "100%", alignItems: "center"}}>
                     <label>Data Início:</label>
@@ -227,7 +236,7 @@ const CalendarioConsultas = () => {
                         {currentItems.length > 0 ? (
                             currentItems.map((consulta, index) => (
                                 <tr key={index}>
-                                    <td>{formatarData(consulta.data)}</td>
+                                    <td>{consulta.data}</td>
                                     <td>{consulta.hora}</td>
                                     <td>{consulta.nome}</td>
                                     <td>{consulta.cpfConsulta}</td>

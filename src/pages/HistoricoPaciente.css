@@ -105,3 +105,20 @@
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+
+.pagination {
+    margin-top: 40px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    text-align: center;
+}
+
+.tituloh1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: white;
+    background-color:#147a66;
+    text-align: center;
+    font-weight: bold;
+  }

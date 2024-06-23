@@ -1,182 +1,202 @@
-.title {
-    text-align: center;
-
-
-
+:root {
+    --main-bg-color: #f9f9f9;
+    --btn-bg-color: #16a086;
+    --btn-hover-bg-color: #147a66;
+    --error-color: #721c24;
+    --error-bg-color: #f8d7da;
+    --error-border-color: #f5c6cb;
+    --success-color: #155724;
+    --success-bg-color: #d4edda;
+    --success-border-color: #c3e6cb;
+    --border-color: #ddd;
+    --input-padding: 10px;
+    --border-radius: 5px;
+    --main-font-family: 'Arial', sans-serif;
+    --heading-font-family: 'Georgia', serif;
+    --text-color: #333;
+    --font-size: 14px;
+    --yellow-bg-color: #fff3cd;
+    --yellow-border-color: #ffeeba;
+    --yellow-text-color: #856404;
 }
 
-.idPaciente{
-    text-align: center;
-    margin-bottom: 50px;
-
-
-
-}
-
-.valid {
-    color: green;
-  }
-  
-  .invalid {
-    color: red;
-  }
-
-
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+.agendamentoConsulta-main {
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
     padding: 20px;
-    border: none;
-    border-radius: 5px;
-    background: #f9f9f9;
-    font-family: serif;
-    font-size: 14px;
+    background: var(--main-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--main-font-family);
+    color: var(--text-color);
+    font-size: var(--font-size);
 }
 
-.form-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 20px;
-    position: relative;
+.agendamentoConsulta-title {
     text-align: center;
-}
-
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.profile-placeholder {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
+    font-size: 20px; /* Aumentei o tamanho da fonte para melhor legibilidade */
+    color: white; /* Alterei a cor da fonte para branco */
+    padding: 1px 2px; /* Adicionei um preenchimento vertical e horizontal para separar o texto do resto do conteúdo */
+    background-color: #156657e5; /* Adicionei um fundo com transparência para destacar o título */
+    border-radius: 0px; /* Arredondei as bordas para suavizar a aparência */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra suave para criar profundidade */
+    margin: 0 -20px 20px; /* Margin negativa para ultrapassar o container */
+    max-width: 1000px; /* Defini um tamanho máximo para o título */
+    width: calc(100% + 36px); /* Ajustei a largura para ultrapassar ambos os lados */
+    height: 80px; /* Defina a altura desejada */
     position: relative;
+    top: -20px;
+    line-height: 50px; /* Centraliza verticalmente o texto */
 }
 
-.profile-placeholder span {
-    position: absolute;
-    font-size: 12px;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
-.profile-pic-input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-}
 
-.btn {
-    width: 10px;
-    height: 10px;
-    background: #16a086;
-    color: #fff;
-}
 
-.btn:hover {
-    background: #147a66;
-}
-
-.include-photo-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #16a086;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.btn-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
+.agendamentoConsulta-title h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #16a086;
     text-align: center;
-}
-
-.form-body {
-    display: grid;
-    margin-top: 10px;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.form-body-container {
-    border: 1.5px dashed #aaa;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    margin-bottom: 5px;
     font-weight: bold;
 }
 
-.form-group input,
-.form-group select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.agendamentoConsulta-title h2 {
+    font-size: 13px;
+    color: var(--text-color);
+}
+.agendamentoConsulta-title1 h2 {
+    text-align: center;
+    font-size: 16px; /* Aumentei o tamanho da fonte para melhor legibilidade */
+    color: white;
+    padding: 10px; /* Adicionei um preenchimento para separar o texto do resto do conteúdo */
+    background-color: #156657e5; /* Adicionei um fundo para destacar o título */
+    border-radius: 0px; /* Arredondei as bordas para suavizar a aparência */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra suave para criar profundidade */
+    margin: 0 -20px 20px; /* Margin negativa para ultrapassar o container */
+    max-width: 1000px; /* Defini um tamanho máximo para o título */
+    width: calc(100% + 20px); /* Ajustei a largura para ultrapassar ambos os lados */
 }
 
-.form-group input:disabled {
+.agendamentoConsulta-idPaciente {
+    margin-bottom: 20px;
+}
+
+.agendamentoConsulta-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.agendamentoConsulta-form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.agendamentoConsulta-form-group input,
+.agendamentoConsulta-form-group select,
+.agendamentoConsulta-form-group textarea {
+    padding: var(--input-padding);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    font-family: var(--main-font-family);
+    color: var(--text-color);
+}
+
+.agendamentoConsulta-form-group input:disabled,
+.agendamentoConsulta-form-group select:disabled,
+.agendamentoConsulta-form-group textarea:disabled {
     background: #e9e9e9;
 }
 
-.form-section-title {
+.agendamentoConsulta-status-message {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.agendamentoConsulta-status-message.success {
+    color: var(--success-color);
+    background-color: var(--success-bg-color);
+    border: 1px solid var(--success-border-color);
+}
+
+.agendamentoConsulta-status-message.error {
+    color: var(--error-color);
+    background-color: var(--error-bg-color);
+    border: 1px solid var(--error-border-color);
+}
+
+.agendamentoConsulta-status-message.yellow {
+    color: var(--yellow-text-color);
+    background-color: var(--yellow-bg-color);
+    border: 1px solid var(--yellow-border-color);
+}
+
+.agendamentoConsulta-button {
+    background: var(--btn-bg-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    height: 45px;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.agendamentoConsulta-button:hover {
+    background: var(--btn-hover-bg-color);
+}
+
+.agendamentoConsulta-form-body-container {
+    border: 1.5px dashed #aaa;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.agendamentoConsulta-form-body-container .agendamentoConsulta-form-section-title {
     color: #777;
     margin-top: 0;
     position: absolute;
     top: -15px;
     left: 20px;
-    background: #f9f9f9;
+    background: var(--main-bg-color);
     padding: 0 10px;
 }
 
-.feedback-message {
-    margin: 20px 0;
-    padding: 10px;
-    border-radius: 5px;
+.agendamentoConsulta-form-body {
+    display: grid;
+    margin-top: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.agendamentoConsulta-success-message {
+    padding: 20px;
+    background-color: var(--success-bg-color);
+    border: 1px solid var(--success-border-color);
+    color: var(--success-color);
+    border-radius: var(--border-radius);
     text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.feedback-message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
 
-.feedback-message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
+
+
