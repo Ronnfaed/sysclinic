@@ -124,7 +124,7 @@ const DadosPessoais = () => {
                             </div>
                             <div className="dados-pessoais-form-group">
                                 <label>Profissão</label>
-                                <input type="text" name="profissao" value={formData.profissao} onChange={handleChange} disabled />
+                                <input type="text" name="profissao" value={formData.profissao} onChange={handleChange}/>
                             </div>
                         </div>
                     </div>
