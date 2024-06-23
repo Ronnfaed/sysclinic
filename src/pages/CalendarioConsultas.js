@@ -59,11 +59,6 @@ const CalendarioConsultas = () => {
         fetchConsultas();
     }, [dataInicio, dataFim]);
 
-    const formatarData = (data) => {
-        const [ano, mes, dia] = data.split('-');
-        return `${dia}/${mes}/${ano}`;
-    };
-
     const handleDeleteConsulta = async (id) => {
         // Perguntar ao usuário se ele tem certeza
         const confirmDelete = window.confirm("Tem certeza que deseja deletar esta consulta?");
@@ -227,7 +222,7 @@ const CalendarioConsultas = () => {
                         {currentItems.length > 0 ? (
                             currentItems.map((consulta, index) => (
                                 <tr key={index}>
-                                    <td>{formatarData(consulta.data)}</td>
+                                    <td>{consulta.data}</td>
                                     <td>{consulta.hora}</td>
                                     <td>{consulta.nome}</td>
                                     <td>{consulta.cpfConsulta}</td>

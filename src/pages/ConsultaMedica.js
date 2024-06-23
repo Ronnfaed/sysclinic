@@ -5,7 +5,16 @@ import InputMask from 'react-input-mask';
 import { db } from '../firebaseConfig';
 import './ConsultaMedica.css';
 
+const hoje = new Date();
+
+const dia = hoje.getDate().toString().padStart(2, '0'); // Obtém o dia do mês com dois dígitos
+const mes = (hoje.getMonth() + 1).toString().padStart(2, '0'); // Obtém o mês (adiciona 1 porque Janeiro é 0)
+const ano = hoje.getFullYear(); // Obtém o ano com quatro dígitos
+
+const dataFormatada = `${dia}/${mes}/${ano}`;
+
 const ConsultaMedica = () => {
+
   const [formData, setFormData] = useState({
     nome: '',
     cpf: '',
@@ -21,11 +30,17 @@ const ConsultaMedica = () => {
     fuma: '',
     bebe: '',
     atividadeFisica: '',
+    doresPeito:'',
+    desmaio:'',
+    vacinacao:'',
+    alergia:'',
     conclusao: '',
     receituario: '',
+    nomeMedico:'',
     crmMedico: '',
     especialidade: '',
     observacoes: '',
+    dataConsulta: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -45,7 +60,7 @@ const ConsultaMedica = () => {
             setFormData({
               ...formData,
               nome: patientData.nome,
-              idade: patientData.idade,
+              idade: patientData.dataNascimento,
               sexo: patientData.sexo,
               cpf: value // Keep the CPF value as it is
             });
@@ -55,6 +70,28 @@ const ConsultaMedica = () => {
         console.error("Erro ao buscar paciente: ", error);
       }
     }
+    
+    if (name === 'crmMedico' && value.length === 6) { // Tamanho do CRM em caracteres
+      try {
+        const funcionariosQuery = query(collection(db, "funcionarios"), where("crmMedico", "==", value));
+        const querySnapshot = await getDocs(funcionariosQuery);
+
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
+            const medicoData = doc.data();
+            setFormData({
+              ...formData,
+              nomeMedico: medicoData.nome,
+              especialidade: medicoData.especialidade,
+              crmMedico: value,
+            });
+          });
+        }
+      } catch (error) {
+        console.error("Erro ao buscar paciente: ", error);
+      }
+    }
+
   };
 
   const validate = () => {
@@ -94,11 +131,17 @@ const ConsultaMedica = () => {
           fuma: '',
           bebe: '',
           atividadeFisica: '',
+          doresPeito:'',
+          desmaio:'',
+          vacinacao:'',
+          alergia:'',
           conclusao: '',
           receituario: '',
           crmMedico: '',
+          nomeMedico:'',
           especialidade: '',
           observacoes: '',
+          dataConsulta: '',
         });
       } catch (error) {
         console.error('Erro ao enviar consulta: ', error);
@@ -127,7 +170,7 @@ const ConsultaMedica = () => {
         <div className="form-row">
           <div className="form-group">
             <label>Idade</label>
-            <input type="text" name="idade" value={formData.idade} onChange={handleChange} readOnly/>
+            <input type="text" name="idade" value={formData.idade} onChange={handleChange} />
             {errors.idade && <span className="error">{errors.idade}</span>}
           </div>
           <div className="form-group">
@@ -150,10 +193,17 @@ const ConsultaMedica = () => {
         </div>
         <h3 className="form-header">Informações do Médico</h3>
         <div className="form-row">
-          <div className="form-group">
-            <label>CRM Médico:</label>
-            <input type="text" name="crmMedico" value={formData.crmMedico} onChange={handleChange} />
+        <div className="form-group">
+            <label style = {{textAlign: "center"}}>CRM Médico:</label>
+            <input type="text" name="crmMedico" value={formData.crmMedico} onChange={handleChange} maxLength = "6"/>
             {errors.crmMedico && <span className="error">{errors.crmMedico}</span>}
+        </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label>Nome do Médico:</label>
+            <input type="text" name="nomeMedico" value={formData.nomeMedico} onChange={handleChange} />
+            {errors.nomeMedico && <span className="error">{errors.nomeMedico}</span>}
           </div>
           <div className="form-group">
             <label>Especialidade:</label>
@@ -223,46 +273,31 @@ const ConsultaMedica = () => {
         </div>
 
 
-        <h3 className="form-header">Perguntas Específicas</h3>
         <div className="form-row">
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="queixa" value={formData.queixa} onChange={handleChange} />
-            {errors.queixa && <span className="error">{errors.queixa}</span>}
+            <label>Sente dores no peito?</label>
+            <input type="text" name="doresPeito" value={formData.doresPeito} onChange={handleChange} />
+            {errors.doresPeito && <span className="error">{errors.doresPeito}</span>}
           </div>
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="doencas" value={formData.doencas} onChange={handleChange} />
-            {errors.doencas && <span className="error">{errors.doencas}</span>}
+            <label>Já sofreu desmaio?</label>
+            <input type="text" name="desmaio" value={formData.desmaio} onChange={handleChange} />
+            {errors.desmaio && <span className="error">{errors.desmaio}</span>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="historicoFamiliar" value={formData.historicoFamiliar} onChange={handleChange} />
-            {errors.historicoFamiliar && <span className="error">{errors.historicoFamiliar}</span>}
+            <label>Está com a vacinação em dia?</label>
+            <input type="text" name="vacinacao" value={formData.vacinacao} onChange={handleChange} />
+            {errors.vacinacao && <span className="error">{errors.vacinacao}</span>}
           </div>
           <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="medicamentos" value={formData.medicamentos} onChange={handleChange} />
-            {errors.medicamentos && <span className="error">{errors.medicamentos}</span>}
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="cirurgias" value={formData.cirurgias} onChange={handleChange} />
-            {errors.cirurgias && <span className="error">{errors.cirurgias}</span>}
-          </div>
-          <div className="form-group">
-            <label>XXXXXXXXXXXX</label>
-            <input type="text" name="fuma" value={formData.fuma} onChange={handleChange} />
-            {errors.fuma && <span className="error">{errors.fuma}</span>}
+            <label>Sofre de alguma alergia aguda?</label>
+            <input type="text" name="alergia" value={formData.alergia} onChange={handleChange} />
+            {errors.alergia && <span className="error">{errors.alergia}</span>}
           </div>
         </div>
 
-
-        <h3 className="form-header">Conclusão Médica</h3>
         <div className="form-row">
           <div className="form-group">
             <label style = {{textAlign: "center"}}>Observações Adicionais</label>
@@ -283,6 +318,14 @@ const ConsultaMedica = () => {
             {errors.receituario && <span className="error">{errors.receituario}</span>}
           </div>
         </div>
+       
+        <div className="form-group">
+          <label style = {{textAlign: 'center'}}>Data da consulta</label>
+            <div className="form-row">
+              <input type="text" name="dataConsulta" value = {formData.dataFormatada}  style = {{width:'100%', textAlign: "center"}} onChange={handleChange}/>
+            </div>
+        </div>
+   
         <div className="btn-container">
           <button type="submit" className="btn" style = {{width: "100%", height: "100%"}}>Enviar Consulta</button>
         </div>
