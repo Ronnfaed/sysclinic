@@ -322,7 +322,7 @@ const ConsultaMedica = () => {
         <div className="form-group">
           <label style = {{textAlign: 'center'}}>Data da consulta</label>
             <div className="form-row">
-              <input type="text" name="dataConsulta" value = {formData.dataFormatada}  style = {{width:'100%', textAlign: "center"}} onChange={handleChange}/>
+              <input type="date" name="dataConsulta" value = {formData.dataFormatada} style = {{width:'100%', textAlign: "center"}} onChange={handleChange}/>
             </div>
         </div>
    

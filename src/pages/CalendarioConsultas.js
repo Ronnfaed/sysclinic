@@ -116,6 +116,19 @@ const CalendarioConsultas = () => {
                     return; // Retorna sem continuar se a validação falhar
                 }
                 
+                // Verifica se já existe uma consulta agendada para o mesmo dia, hora e especialidade
+                const consultaConflitante = consultas.find(consulta => (
+                    consulta.id !== consultaSelecionada.id && // Exclui a própria consulta da comparação
+                    consulta.data === formEdicao.data &&
+                    consulta.hora === formEdicao.hora &&
+                    consulta.especialidade === formEdicao.especialidade
+                ));
+                
+                if (consultaConflitante) {
+                    alert("Já existe uma consulta agendada para o mesmo dia, horário e especialidade.");
+                    return; // Retorna sem continuar se houver conflito
+                }
+                
                 const consultaRef = doc(db, "consultasAgendadas", consultaSelecionada.id);
                 await updateDoc(consultaRef, {
                     data: formEdicao.data,
@@ -143,6 +156,7 @@ const CalendarioConsultas = () => {
             }
         }
     };
+    
     
 
     const handleCancelarEdicao = () => {
