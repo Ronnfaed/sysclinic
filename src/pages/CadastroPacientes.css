@@ -182,3 +182,8 @@
     font-size: 12px; /* Define o tamanho da fonte */
     font-family: serif;
 }
+
+.cadPaciente-date-picker{
+    width: 200%;
+    text-align: center;
+}
