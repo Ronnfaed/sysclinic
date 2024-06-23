@@ -265,7 +265,7 @@ const CadastroUsuarios = () => {
                                         <Field as="select" name="especialidade">
                                             <option value="">Selecione uma especialidade</option>
                                             <option value="Clínico Geral">Clínico Geral</option>
-                                            <option value="Pediatra">Pediatra</option>
+                                            <option value="Pediatria">Pediatra</option>
                                             <option value="Cardiologia">Cardiologia</option>
                                         </Field>
                                         <ErrorMessage name="especialidade" component="div" className="cadUsuario-error-message" />
