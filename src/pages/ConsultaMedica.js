@@ -5,21 +5,13 @@ import InputMask from 'react-input-mask';
 import { db } from '../firebaseConfig';
 import './ConsultaMedica.css';
 
+const hoje = new Date();
 
-const TodayDate = () => {
-  // Obtém a data de hoje
-  const today = new Date();
+const dia = hoje.getDate().toString().padStart(2, '0'); // Obtém o dia do mês com dois dígitos
+const mes = (hoje.getMonth() + 1).toString().padStart(2, '0'); // Obtém o mês (adiciona 1 porque Janeiro é 0)
+const ano = hoje.getFullYear(); // Obtém o ano com quatro dígitos
 
-  // Formata a data para dd/mm/yyyy
-  const formattedDate = `${today.getDate().toString().padStart(2, '0')}/${
-    (today.getMonth() + 1).toString().padStart(2, '0')
-  }/${today.getFullYear()}`;
-
-  return formattedDate
-
-};
-
-
+const dataFormatada = `${dia}/${mes}/${ano}`;
 
 const ConsultaMedica = () => {
 
@@ -48,7 +40,7 @@ const ConsultaMedica = () => {
     crmMedico: '',
     especialidade: '',
     observacoes: '',
-    dataConsulta: TodayDate(),
+    dataConsulta: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -178,7 +170,7 @@ const ConsultaMedica = () => {
         <div className="form-row">
           <div className="form-group">
             <label>Idade</label>
-            <input type="text" name="idade" value={formData.idade} onChange={handleChange} readOnly/>
+            <input type="text" name="idade" value={formData.idade} onChange={handleChange} />
             {errors.idade && <span className="error">{errors.idade}</span>}
           </div>
           <div className="form-group">
@@ -306,7 +298,6 @@ const ConsultaMedica = () => {
           </div>
         </div>
 
-        <h3 className="form-header">Conclusão Médica</h3>
         <div className="form-row">
           <div className="form-group">
             <label style = {{textAlign: "center"}}>Observações Adicionais</label>
@@ -327,6 +318,14 @@ const ConsultaMedica = () => {
             {errors.receituario && <span className="error">{errors.receituario}</span>}
           </div>
         </div>
+       
+        <div className="form-group">
+          <label style = {{textAlign: 'center'}}>Data da consulta</label>
+            <div className="form-row">
+              <input type="text" name="dataConsulta" value = {formData.dataFormatada}  style = {{width:'100%', textAlign: "center"}} onChange={handleChange}/>
+            </div>
+        </div>
+   
         <div className="btn-container">
           <button type="submit" className="btn" style = {{width: "100%", height: "100%"}}>Enviar Consulta</button>
         </div>

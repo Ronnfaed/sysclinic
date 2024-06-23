@@ -8,7 +8,6 @@ import firebase from '../firebaseConfig';
 import CadastroPacientes from './CadastroPacientes';
 
 const AgendamentoConsultas = () => {
-
     // Métodos e funções para validar o CPF inserido
     const [cpf, setCpf] = useState(''); // Método que define o valor do CPF, baseado no Input do usuário.
     const [result, setResult] = useState(''); // Método que define e informa o resultado da verificação de cpf, se é válido ou inválido.
@@ -16,7 +15,7 @@ const AgendamentoConsultas = () => {
     const [loading, setLoading] = useState(true); // Estado de carregamento
     const [error, setError] = useState(null); // Estado de erro
     const [cpfNotFoundMessage, setCpfNotFoundMessage] = useState(''); // Mensagem de erro de CPF não encontrado
-    const [cpfFound, setCpfFound] = useState ('');
+    const [cpfFound, setCpfFound] = useState('');
 
     const handleInputChange = (e) => {
         setCpf(e.target.value);
@@ -87,6 +86,24 @@ const AgendamentoConsultas = () => {
     const [motivo, setMotivo] = useState('');
     const [formaPagamento, setFormaPagamento] = useState('');
     const [especialidade, setEspecialidade] = useState('');
+
+    // Estado do botão de submit
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+
+    // Função para verificar se todos os campos estão preenchidos
+    useEffect(() => {
+        if (cpf && data && hora && motivo && formaPagamento && especialidade && userData) {
+            setIsSubmitDisabled(false);
+        } else {
+            setIsSubmitDisabled(true);
+        }
+    }, [cpf, data, hora, motivo, formaPagamento, especialidade, userData]);
+
+    // Função para formatar a data
+    const formatDate = (date) => {
+        const [year, month, day] = date.split('-');
+        return `${day}/${month}/${year}`;
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -170,7 +187,7 @@ const AgendamentoConsultas = () => {
                     <p className="error-message">{cpfNotFoundMessage}</p>
                 )}
                 {cpfFound && (
-                    <p style = {{color: "green", fontWeight: "bold"}}>{cpfFound}</p>
+                    <p style={{color: "green", fontWeight: "bold"}}>{cpfFound}</p>
                 )}
                 {/*<p className={result === 'CPF válido!' ? 'valid' : 'invalid'}>{result}</p> -- Desativado para não confundir o cliente */}
             </div>
@@ -308,10 +325,21 @@ const AgendamentoConsultas = () => {
                         </select>
                     </div>
 
-                    <button type="submit" style={{ marginTop: '50px', width: '100%', textAlign: 'center' }}>Confirmar</button>
+                    <button
+                        type="submit"
+                        style={{
+                            marginTop: '50px',
+                            width: '100%',
+                            textAlign: 'center',
+                            backgroundColor: isSubmitDisabled ? 'gray' : '',
+                            cursor: isSubmitDisabled ? 'not-allowed' : 'pointer'
+                        }}
+                        disabled={isSubmitDisabled}
+                    >
+                        Confirmar
+                    </button>
 
                 </form>
-
             </div>
         </div>
     );
