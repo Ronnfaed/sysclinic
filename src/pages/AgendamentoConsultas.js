@@ -176,10 +176,11 @@ const AgendamentoConsultas = () => {
                     setUserData(querySnapshot.docs[0].data());
                     setCpfStatusMessage('CPF encontrado nos nossos registros.');
                     setCpfStatusClass('success');
-                } else {
+                } 
+                else {
                     setUserData(null);
-                    setCpfStatusMessage('CPF não encontrado nos nossos registros.');
-                    setCpfStatusClass('error');
+               {{/* setCpfStatusMessage('CPF não encontrado nos nossos registros.');
+                    setCpfStatusClass('error'); COMENTADO POIS ESTÁ FEIO*/}} 
                 }
             } catch (error) {
                 console.error("Error fetching document: ", error);
