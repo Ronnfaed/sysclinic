@@ -1,10 +1,13 @@
-// CadastroPaciente.js
 import React, { useState } from 'react';
 import './CadastroPacientes.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import InputMask from 'react-input-mask';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import ptBR from 'date-fns/locale/pt-BR'; // Importe o locale para português do Brasil
+import { format } from 'date-fns';
 
 const validateCPF = (value) => {
     const cpf = value.replace(/[^\d]+/g, '');
@@ -61,6 +64,7 @@ const CadastroPacientes = () => {
         try {
             await addDoc(pacientesRef, {
                 ...values,
+                nascimento: format(values.nascimento, 'yyyy-MM-dd'), // Formata a data para DD/MM/YYYY
                 profilePic
             });
             setFeedbackMessage('Usuário cadastrado com sucesso.');
@@ -108,7 +112,8 @@ const CadastroPacientes = () => {
                     nomeSocial: '',
                     raca: '',
                     cpf: '',
-                    profissao: ''
+                    profissao: '',
+                    nascimento: null // Inicializado como null para o DatePicker
                 }}
                 validate={(values) => {
                     const errors = {};
@@ -127,6 +132,9 @@ const CadastroPacientes = () => {
                     }
                     if (!values.profissao) errors.profissao = 'Campo obrigatório';
                     if (!values.raca) errors.raca = 'Campo obrigatório';
+                    if (!values.nascimento) {
+                        errors.nascimento = 'Campo obrigatório';
+                    }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -134,7 +142,7 @@ const CadastroPacientes = () => {
                     setSubmitting(false);
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, setFieldValue, values }) => (
                     <Form>
                         <div className="cadPaciente-form-body-container">
                             <h3 className="cadPaciente-form-section-title">Dados pessoais</h3>
@@ -180,6 +188,22 @@ const CadastroPacientes = () => {
                                     <Field type="text" name="profissao" placeholder="Preencha a profissão do paciente" />
                                     <ErrorMessage name="profissao" component="div" className="cadPaciente-error-message" />
                                 </div>
+                                <div className="cadPaciente-form-group">
+                                    <label>Data de Nascimento</label>
+                                    <DatePicker
+                                        name="nascimento"
+                                        selected={values.nascimento}
+                                        onChange={date => setFieldValue('nascimento', date)}
+                                        dateFormat="dd/MM/yyyy"
+                                        placeholderText="Selecione a data de nascimento"
+                                        locale={ptBR}
+                                        className="cadPaciente-date-picker"
+                                        showYearDropdown
+                                        showMonthDropdown
+                                        dropdownMode="select"
+                                    />
+                                    <ErrorMessage name="nascimento" component="div" className="cadPaciente-error-message" />
+                                </div>
                             </div>
                         </div>
                         <div className="cadPaciente-form-body-container">
@@ -208,3 +232,6 @@ const CadastroPacientes = () => {
 };
 
 export default CadastroPacientes;
+
+
+

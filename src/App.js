@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import Login from './components/Login';
@@ -97,66 +97,39 @@ const App = () => {
             return <div>Carregando...</div>;
         }
 
+        if (!isAuthenticated) {
+            return (
+                <Routes>
+                    <Route path="/" element={<Login onLogin={handleLogin} />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                </Routes>
+            );
+        }
+
         return (
-            <Routes>
-                {!isAuthenticated ? (
-                    <>
-                        <Route path="/" element={<Login onLogin={handleLogin} />} />
-                        <Route path="/signup" element={<SignUp />} />
-                        <Route path="/reset-password" element={<ResetPassword />} />
+            <>
+                <Header toggleSidebar={toggleSidebar} />
+                <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} tipoFuncionario={tipoFuncionario} />
+                <div className="content">
+                    <Routes>
+                        <Route path="/home/*" element={<ProtectedRoute isAuthenticated={isAuthenticated}><HomePage tipoFuncionario={tipoFuncionario} /></ProtectedRoute>} />
+                        <Route path="/dados-pessoais" element={<ProtectedRoute isAuthenticated={isAuthenticated}><DadosPessoais /></ProtectedRoute>} />
+                        <Route path="/alterar-senha" element={<ProtectedRoute isAuthenticated={isAuthenticated}><AlterarSenha /></ProtectedRoute>} />
                         <Route path="*" element={<Navigate to="/" />} />
-                    </>
-                ) : (
-                    <>
-                        <Route
-                            path="/home/*"
-                            element={
-                                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                                    <HomePage tipoFuncionario={tipoFuncionario} />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/dados-pessoais"
-                            element={
-                                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                                    <DadosPessoais />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/alterar-senha"
-                            element={
-                                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                                    <AlterarSenha />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route path="*" element={<Navigate to="/home" />} />
-                    </>
-                )}
-            </Routes>
+                    </Routes>
+                </div>
+            </>
         );
     };
 
     return (
         <div className="App">
-            {isAuthenticated && tipoFuncionario ? (
-                <>
-                    <Header toggleSidebar={toggleSidebar} />
-                    <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} tipoFuncionario={tipoFuncionario} />
-                    <div className="content">
-                        {renderRoutes()}
-                    </div>
-                </>
-            ) : (
-                renderRoutes()
-            )}
+            {renderRoutes()}
         </div>
     );
 };
 
-// Renomeando o componente Home para HomePage
 const HomePage = ({ tipoFuncionario }) => {
     const renderRoutes = () => {
         switch (tipoFuncionario) {
@@ -202,3 +175,8 @@ const HomePage = ({ tipoFuncionario }) => {
 };
 
 export default App;
+
+
+
+
+

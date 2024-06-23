@@ -143,6 +143,8 @@ const CadastroUsuarios = () => {
                     cpf: '',
                     matricula: '',
                     tipoFuncionario: '',
+                    crm: '', // Adicionamos o campo CRM
+                    especialidade: '', // Adicionamos o campo Especialidade
                     senha: ''
                 }}
                 validate={(values) => {
@@ -183,6 +185,10 @@ const CadastroUsuarios = () => {
                     if (!values.senha) {
                         errors.senha = 'Campo obrigatório';
                     }
+                    // Validar CRM apenas se for médico
+                    if (values.tipoFuncionario === 'medico' && !values.crm) {
+                        errors.crm = 'Campo obrigatório para médicos';
+                    }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -190,7 +196,7 @@ const CadastroUsuarios = () => {
                     setSubmitting(false);
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, values, setFieldValue }) => (
                     <Form>
                         <div className="cadUsuario-form-body-container">
                             <h3 className="cadUsuario-form-section-title">Dados do funcionário</h3>
@@ -232,11 +238,6 @@ const CadastroUsuarios = () => {
                                     <ErrorMessage name="cpf" component="div" className="cadUsuario-error-message" />
                                 </div>
                                 <div className="cadUsuario-form-group">
-                                    <label>Matrícula</label>
-                                    <Field type="text" name="matricula" placeholder="Preencha a matrícula do funcionário" />
-                                    <ErrorMessage name="matricula" component="div" className="cadUsuario-error-message" />
-                                </div>
-                                <div className="cadUsuario-form-group">
                                     <label>Tipo de funcionário</label>
                                     <Field as="select" name="tipoFuncionario">
                                         <option value="">Selecione</option>
@@ -245,6 +246,30 @@ const CadastroUsuarios = () => {
                                     </Field>
                                     <ErrorMessage name="tipoFuncionario" component="div" className="cadUsuario-error-message" />
                                 </div>
+                                <div className="cadUsuario-form-group">
+                                    <label>Matrícula</label>
+                                    <Field type="text" name="matricula" maxLength={9} placeholder="Preencha a matrícula do funcionário" />
+                                    <ErrorMessage name="matricula" component="div" className="cadUsuario-error-message" />
+                                </div>
+                                {values.tipoFuncionario === 'medico' && ( // Mostrar CRM apenas se for médico
+                                    <div className="cadUsuario-form-group">
+                                        <label>CRM</label>
+                                        <Field type="string" name="crm" maxLength={6} render={({ field }) => <InputMask {...field} mask="999999" />} placeholder="Preencha o CRM caso o funcionário seja médico" />
+                                        <ErrorMessage name="crm" component="div" className="cadUsuario-error-message" />
+                                    </div>
+                                )}
+                                {values.tipoFuncionario === 'medico' && ( // Mostrar Especialidade apenas se for médico
+                                    <div className="cadUsuario-form-group">
+                                        <label>Especialidade</label>
+                                        <Field as="select" name="especialidade">
+                                            <option value="">Selecione uma especialidade</option>
+                                            <option value="Clínico Geral">Clínico Geral</option>
+                                            <option value="Pediatra">Pediatra</option>
+                                            <option value="Cardiologia">Cardiologia</option>
+                                        </Field>
+                                        <ErrorMessage name="especialidade" component="div" className="cadUsuario-error-message" />
+                                    </div>
+                                )}
                                 <div className="cadUsuario-form-group">
                                     <label>Senha</label>
                                     <Field type="password" name="senha" placeholder="Preencha a senha do funcionário" />

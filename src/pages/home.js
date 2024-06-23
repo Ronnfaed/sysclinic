@@ -16,7 +16,7 @@ const Home = ({ tipoFuncionario }) => {
       case 'admin':
         return (
           <Routes>
-            <Route path="cadastro-pacientes" element={<CadastroPacientes />} />
+            <Route path="home/cadastro-pacientes" element={<CadastroPacientes />} />
             <Route path="agendamento-consultas" element={<AgendamentoConsultas />} />
             <Route path="calendario-consultas" element={<CalendarioConsultas />} />
             <Route path="consulta-medica" element={<ConsultaMedica />} />
