@@ -81,7 +81,7 @@ const ConsultaMedica = () => {
     
     if (name === 'crmMedico' && value.length === 6) { // Tamanho do CRM em caracteres
       try {
-        const funcionariosQuery = query(collection(db, "funcionarios"), where("crmMedico", "==", value));
+        const funcionariosQuery = query(collection(db, "funcionarios"), where("crm", "==", value));
         const querySnapshot = await getDocs(funcionariosQuery);
 
         if (!querySnapshot.empty) {
