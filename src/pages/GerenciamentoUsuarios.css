@@ -1,88 +1,95 @@
+/* GerenciamentoUsuarios.css */
+
 .main {
+
     font-family: Arial, sans-serif;
-    margin: 0 auto;
-    padding: 20px;
-    width: 90%;
+    width: 100%;
     background-color: #f8f9fa;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow-x: auto;
-    text-align: justify; /* Justifica o texto */
+    overflow-x: hidden;
+    margin-right: 0;
 }
 
-.title {
+.gerenciamento-usuarios-title {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.title h1 {
+.gerenciamento-usuarios-title h1 {
     color: #007bff;
     margin-bottom: 10px;
 }
 
-.title h2 {
+.gerenciamento-usuarios-title h2 {
     color: #495057;
     margin-bottom: 10px;
 }
 
-.title p {
+.gerenciamento-usuarios-title p {
     color: #6c757d;
     margin-bottom: 20px;
 }
 
-.form-group {
+.toggle-buttons {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centraliza verticalmente */
     margin-bottom: 20px;
 }
 
-.form-group label {
-    margin-right: 10px;
-    font-weight: bold;
-    color: #495057;
+.toggle-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
 }
 
-.form-group input[type="date"] {
-    padding: 8px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #495057;
+.toggle-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    overflow-x: hidden;
 }
 
 .tabela1 {
-    width: 100%;
+
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #ffffff;
+    table-layout: fixed;
 }
 
-.tabela1 th, .tabela1 td {
-    padding: 12px;
+.tabela th, .tabela td {
+    padding: 5px;
     text-align: left;
     border: 1px solid #dee2e6;
+    white-space: nowrap; /* Evita que o texto quebre em linhas */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Mostra reticências (...) quando o texto é cortado */
 }
 
-.tabela1 th {
+.tabela th {
     background-color: #16a086;
     color: white;
     font-weight: bold;
 }
 
-.tabela1 td {
+.tabela td {
     color: #495057;
 }
 
-.tabela1 tr:nth-child(even) {
+.tabela tr:nth-child(even) {
     background-color: #f8f9fa;
 }
 
-.tabela1 tr:hover {
+.tabela tr:hover {
     background-color: #e9ecef;
 }
 
-.tabela1 button {
+.tabela button {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
@@ -90,23 +97,19 @@
     font-size: 14px;
 }
 
-.tabela1 .confirmar {
+.tabela .confirmar {
     background-color: #28a745;
     color: white;
 }
 
-.tabela1 .alterar {
+.tabela .alterar {
     background-color: #ffc107;
     color: white;
 }
 
-.tabela1 .deletar {
+.tabela .deletar {
     background-color: #dc3545;
     color: white;
-}
-
-.pagination {
-    margin-top: 40px;
 }
 
 .modal {
@@ -128,6 +131,8 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
+    max-width: 90%;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
 }
 
 .modal-content input[type='date'],
@@ -155,7 +160,6 @@
 .modal-buttons {
     margin-top: 20px;
     text-align: right;
-    align-items: center; /* Centraliza verticalmente */
 }
 
 .modal-buttons button {
@@ -173,14 +177,10 @@
     background-color: #0056b3;
 }
 
-.calendarioConsulta-title {
-    font-size: 22px;
-    margin-bottom: 10px;
+.mensagem-sucesso {
+    margin-top: 20px;
+    background-color: #28a745;
     color: white;
-    background-color: #156657e5;
-    text-align: center;
-    font-weight: bold;
-    height: 25px;
-    text-align: center;
-    align-content: center;
+    padding: 10px;
+    border-radius: 4px;
 }
