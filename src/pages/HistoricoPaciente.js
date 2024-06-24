@@ -70,8 +70,7 @@ const HistoricoPaciente = () => {
         <h3><strong>Informações básicas do paciente</strong></h3>
         <p><strong>CPF</strong>: {dado.cpf}</p>
         <p><strong>Nome do paciente</strong>: {dado.nome}</p>
-        <p><strong>Data de Nascimento</strong>: {dado.dataNascimento}</p>
-        <p><strong>Idade</strong>: {calcularIdade(dado.dataNascimento, dado.dataConsulta)} anos</p>
+        <p><strong>Idade</strong>: {dado.idade} anos</p>
         <p><strong>Altura</strong>: {dado.altura}</p>
         <p><strong>Peso</strong>: {dado.peso}</p>
         <p><strong>Sexo</strong>: {dado.sexo}</p>
