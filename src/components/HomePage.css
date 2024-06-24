@@ -1,34 +1,57 @@
-/* HomePage.css */
+/* Importar fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff /* Gradiente de fundo */
+}
 
 .homepage-container {
     display: flex;
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: center; 
+    align-items: center;
     padding: 50px;
-    background-color: #f0f0f0; /* Cor de fundo para destacar a área */
+    min-height: 100vh; /* Ocupa toda a altura da janela */
+    box-sizing: border-box;
 }
 
 .welcome-text {
-    text-align: center; /* Alinha o texto ao centro */
-    flex: 1; /* Ocupa 1 parte do espaço disponível */
+    text-align: center; 
+    flex: 1; 
     padding: 20px;
+    color: #333; /* Cor do texto */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra do texto */
 }
 
 .welcome-text h1 {
-    font-size: 3em; /* Tamanho grande para o título */
-    margin-bottom: 10px; /* Espaço abaixo do título */
+    font-size: 3em; 
+    margin-bottom: 10px; 
+    color: #16a086; /* Cor do título */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra do título */
+}
+
+.welcome-text p {
+    font-size: 1.2em; /* Tamanho do parágrafo */
 }
 
 .image-container {
-    flex: 1; /* Ocupa 1 parte do espaço disponível */
-    max-width: 50%; /* Largura máxima para a imagem */
-    overflow: hidden; /* Oculta qualquer parte da imagem que extrapolar */
-    border-radius: 10px; /* Borda arredondada */
+    flex: 1; 
+    max-width: 50%; 
+    overflow: hidden; 
+    border-radius: 10px; 
+
+    transition: transform 0.3s ease; /* Transição suave */
 }
 
 .image-container img {
-    width: 100%; /* Ocupa todo o espaço disponível */
-    height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Remove espaçamento extra abaixo da imagem */
-    border-radius: 10px; /* Borda arredondada */
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: 10px; 
+}
+
+.image-container:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
 }

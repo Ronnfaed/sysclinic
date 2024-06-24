@@ -114,11 +114,18 @@
     text-align: center;
 }
 
-.tituloh1 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: white;
-    background-color:#147a66;
+.historico-paciente-titulo1 {
     text-align: center;
+    max-width: 1470px;
+    font-size: 18px;
+    font-family: Arial, sans-serif !important;
     font-weight: bold;
+    color: white;
+    padding: 10px;
+    background-color: #147a66;
+     /* Adicionando uma borda verde claro */
+    border-radius: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 -20px 20px;
+    max-width: calc(100% + 40px);
   }

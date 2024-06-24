@@ -163,13 +163,15 @@
 }
 
 .cadUsuario-form-section-title {
-    color: #777;
-    margin-top: 0;
-    position: absolute;
-    top: -15px;
-    left: 20px;
-    background: var(--main-bg-color);
-    padding: 0 10px;
+        color: #16a086;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        margin-top: 0;
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        background: var(--main-bg-color);
+        padding: 0 10px;
+    
 }
 
 .cadUsuario-feedback-message {

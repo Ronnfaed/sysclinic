@@ -22,7 +22,7 @@ const AlterarSenha = () => {
 
     return (
         <div className="alterar-senha-container"> {/* Use a classe do AlterarSenha.css */}
-            <h2>Alterar Senha</h2>
+                          <h2 className="historico-paciente-titulo1" style={{ marginTop: '-20px' }}>Alterar Senha</h2>
             <input
                 type="email"
                 placeholder="Digite seu e-mail"

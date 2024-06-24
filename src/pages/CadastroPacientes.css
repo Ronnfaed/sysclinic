@@ -146,9 +146,24 @@
 .cadPaciente-form-group input:disabled {
     background: #e9e9e9;
 }
+.cadPaciente-title1 h2 {
+    text-align: center;
+    font-size: 18px;
+    font-family: Arial, sans-serif !important;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    background-color: #147a66;
+     /* Adicionando uma borda verde claro */
+    border-radius: 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 -20px 20px;
+    max-width: calc(100% + 40px);
+}
 
 .cadPaciente-form-section-title {
-    color: #777;
+    color: #16a086;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     margin-top: 0;
     position: absolute;
     top: -15px;

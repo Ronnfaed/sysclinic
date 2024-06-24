@@ -32,6 +32,9 @@ const formatDate = (date) => {
 const CpfSearch = ({ cpf, handleChange, cpfStatusMessage, cpfStatusClass }) => {
     return (
         <div className="agendamentoConsulta-idPaciente">
+                        <div className="agendamentoConsulta-title1" style={{ marginTop: '-20px' }}>
+                <h2>Agendamento de Consultas</h2>
+            </div>
             <form className="agendamentoConsulta-form-group" style={{ width: "100%", alignItems: "center" }}>
                 <InputMask
                     name="cpf"
@@ -176,11 +179,10 @@ const AgendamentoConsultas = () => {
                     setUserData(querySnapshot.docs[0].data());
                     setCpfStatusMessage('CPF encontrado nos nossos registros.');
                     setCpfStatusClass('success');
-                } 
-                else {
+                } else {
                     setUserData(null);
-               {{/* setCpfStatusMessage('CPF não encontrado nos nossos registros.');
-                    setCpfStatusClass('error'); COMENTADO POIS ESTÁ FEIO*/}} 
+                    setCpfStatusMessage('CPF não encontrado nos nossos registros.');
+                    setCpfStatusClass('error');
                 }
             } catch (error) {
                 console.error("Error fetching document: ", error);
@@ -275,7 +277,7 @@ const AgendamentoConsultas = () => {
 
     return (
         <div className="agendamentoConsulta-main">
-            <h1 className="agendamentoConsulta-title" style = {{justifyContent: 'center'}}>Agendamento de Consultas</h1>
+
             <CpfSearch cpf={cpf} handleChange={handleChange} cpfStatusMessage={cpfStatusMessage} cpfStatusClass={cpfStatusClass} />
 
             {userData && (

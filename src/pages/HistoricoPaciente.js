@@ -99,8 +99,8 @@ const HistoricoPaciente = () => {
 
   return (
     <div className="container">
+              <h2 className="historico-paciente-titulo1" style={{ marginTop: '-20px' }}>Histórico do Paciente</h2>
       <form className="historico-paciente-form" onSubmit={handleSubmit}>
-        <h2 className="tituloh1">Histórico do Paciente</h2>
         <div className="form-body">
           <div className="form-group full-width">
             <label>CPF</label>

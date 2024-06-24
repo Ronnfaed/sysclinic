@@ -77,6 +77,10 @@ const CadastroPacientes = () => {
 
     return (
         <div className="cadPaciente-container">
+            <div className="cadPaciente-title1" style={{ marginTop: '-20px' }}>
+                <h2>Cadastro de Pacientes
+                </h2>
+            </div>
             <div className="cadPaciente-form-header">
                 <div className="cadPaciente-profile-section">
                     {profilePic ? (

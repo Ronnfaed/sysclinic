@@ -80,6 +80,7 @@ const DadosPessoais = () => {
 
     return (
         <div className="dados-pessoais-container">
+                                      <h2 className="historico-paciente-titulo1" style={{ marginTop: '-20px' }}>Dados Pessoais</h2>
             {successMessage && (
                 <div className="dados-pessoais-feedback-message success">
                     {successMessage}

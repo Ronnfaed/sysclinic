@@ -105,6 +105,7 @@ const CadastroUsuarios = () => {
 
     return (
         <div className="cadUsuario-container">
+                          <h2 className="historico-paciente-titulo1" style={{ marginTop: '-20px' }}>Cadastro de Atendentes ou Médicos</h2>
             <div className="cadUsuario-form-header">
                 <div className="cadUsuario-profile-section">
                     {profilePic ? (

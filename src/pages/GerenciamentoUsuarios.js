@@ -127,7 +127,7 @@ const GerenciamentoUsuarios = () => {
 
     return (
         <div className="main">
-            <h1 className="gerenciamento-usuarios-title" style = {{marginRight:'200px'}}>Gerenciamento de Pacientes e Funcionários</h1>
+                                      <h2 className="historico-paciente-titulo1" style={{ marginTop: '-20px' }}>Gerenciamento de Usuários</h2>
 
             <div className="content">
                 <div className="toggle-buttons" style = {{marginRight: '450px'}}>

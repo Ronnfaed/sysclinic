@@ -20,6 +20,13 @@
     --yellow-text-color: #856404;
 }
 
+body {
+    font-family: var(--main-font-family);
+    margin: 0;
+    padding: 0;
+    background: var(--main-bg-color);
+}
+
 .agendamentoConsulta-main {
     width: 80%;
     max-width: 900px;
@@ -28,54 +35,33 @@
     background: var(--main-bg-color);
     border-radius: var(--border-radius);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: var(--main-font-family);
     color: var(--text-color);
     font-size: var(--font-size);
 }
 
 .agendamentoConsulta-title {
     text-align: center;
-    font-size: 20px; /* Aumentei o tamanho da fonte para melhor legibilidade */
-    color: white; /* Alterei a cor da fonte para branco */
-    padding: 1px 2px; /* Adicionei um preenchimento vertical e horizontal para separar o texto do resto do conteúdo */
-    background-color: #156657e5; /* Adicionei um fundo com transparência para destacar o título */
-    border-radius: 0px; /* Arredondei as bordas para suavizar a aparência */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra suave para criar profundidade */
-    margin: 0 -20px 20px; /* Margin negativa para ultrapassar o container */
-    max-width: 1000px; /* Defini um tamanho máximo para o título */
-    width: calc(100% + 36px); /* Ajustei a largura para ultrapassar ambos os lados */
-    height: 80px; /* Defina a altura desejada */
-    position: relative;
-    top: -20px;
-    line-height: 50px; /* Centraliza verticalmente o texto */
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+    background-color: rgba(22, 160, 134, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 -20px 20px;
+    max-width: calc(100% + 40px);
+    line-height: 1.5;
 }
 
-
-
-
-.agendamentoConsulta-title h1 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #16a086;
-    text-align: center;
-    font-weight: bold;
-}
-
-.agendamentoConsulta-title h2 {
-    font-size: 13px;
-    color: var(--text-color);
-}
 .agendamentoConsulta-title1 h2 {
     text-align: center;
-    font-size: 16px; /* Aumentei o tamanho da fonte para melhor legibilidade */
+    font-size: 18px;
     color: white;
-    padding: 10px; /* Adicionei um preenchimento para separar o texto do resto do conteúdo */
-    background-color: #156657e5; /* Adicionei um fundo para destacar o título */
-    border-radius: 0px; /* Arredondei as bordas para suavizar a aparência */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra suave para criar profundidade */
-    margin: 0 -20px 20px; /* Margin negativa para ultrapassar o container */
-    max-width: 1000px; /* Defini um tamanho máximo para o título */
-    width: calc(100% + 20px); /* Ajustei a largura para ultrapassar ambos os lados */
+    padding: 10px;
+    background-color: #147a66;
+    border-radius: 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 -20px 20px;
+    max-width: calc(100% + 40px);
 }
 
 .agendamentoConsulta-idPaciente {
@@ -150,7 +136,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     margin-top: 20px;
     transition: background 0.3s ease;
 }
@@ -161,7 +146,7 @@
 
 .agendamentoConsulta-form-body-container {
     border: 1.5px dashed #aaa;
-    background: #FFFFFF;
+    background: #fff;
     padding: 20px;
     border-radius: var(--border-radius);
     margin-bottom: 20px;
@@ -169,7 +154,8 @@
 }
 
 .agendamentoConsulta-form-body-container .agendamentoConsulta-form-section-title {
-    color: #777;
+    color: #16a086;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     margin-top: 0;
     position: absolute;
     top: -15px;
@@ -185,6 +171,12 @@
     gap: 20px;
 }
 
+@media (max-width: 768px) {
+    .agendamentoConsulta-form-body {
+        grid-template-columns: 1fr;
+    }
+}
+
 .agendamentoConsulta-success-message {
     padding: 20px;
     background-color: var(--success-bg-color);
@@ -196,6 +188,28 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+/* Animações */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+
+.agendamentoConsulta-form-group input,
+.agendamentoConsulta-form-group select,
+.agendamentoConsulta-form-group textarea {
+    transition: border-color 0.3s ease;
+}
+
+.agendamentoConsulta-form-group input:focus,
+.agendamentoConsulta-form-group select:focus,
+.agendamentoConsulta-form-group textarea:focus {
+    border-color: var(--btn-bg-color);
+    outline: none;
+}
+
 
 
 
