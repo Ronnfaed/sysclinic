@@ -183,14 +183,14 @@ const ConsultaMedica = () => {
           </div>
           <div className="form-group">
             <label>Altura:</label>
-            <input type="text" name="altura" value={formData.altura} onChange={handleChange} />
+            <input type="text" name="altura" value={formData.altura} onChange={handleChange} maxLength = '5'/>
             {errors.altura && <span className="error">{errors.altura}</span>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label>Peso:</label>
-            <input type="text" name="peso" value={formData.peso} onChange={handleChange}/>
+            <input type="text" name="peso" value={formData.peso} onChange={handleChange} maxLength = '5'/>
             {errors.peso && <span className="error">{errors.peso}</span>}
           </div>
           <div className="form-group">
