@@ -1,7 +1,6 @@
 /* GerenciamentoUsuarios.css */
 
 .main {
-
     font-family: Arial, sans-serif;
     width: 100%;
     background-color: #f8f9fa;
@@ -193,4 +192,13 @@
 .deletar {
     background-color: #dc3545;
     color: white;
+}
+
+.mensagem-erro {
+    text-align: center;
+    background-color: #ffcccc;
+    color: #b30000;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
