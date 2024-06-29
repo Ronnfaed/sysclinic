@@ -193,8 +193,8 @@ const GerenciamentoUsuarios = () => {
                                         <td>{funcionario.celular}</td>
                                         <td>{funcionario.matricula}</td> {/* Adicionado campo Matrícula */}
                                         <td>{funcionario.tipoFuncionario}</td> {/* Adicionado campo Tipo de Funcionário */}
-                                        <td><button onClick={() => handleEditarUsuario({ ...funcionario, tipo: 'funcionario' })}>Editar</button></td>
-                                        <td><button onClick={() => handleDeleteUsuario(funcionario.id, 'funcionario')}>Remover</button></td>
+                                        <td><button className="editar" onClick={() => handleEditarUsuario({ ...funcionario, tipo: 'funcionario' })}>Editar</button></td>
+                                        <td><button className="deletar" onClick={() => handleDeleteUsuario(funcionario.id, 'funcionario')}>Remover</button></td>
                                     </tr>
                                 ))}
                             </tbody>

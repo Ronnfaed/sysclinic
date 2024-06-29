@@ -184,3 +184,13 @@
     padding: 10px;
     border-radius: 4px;
 }
+
+.editar {
+    background-color: #ffc107;
+    color: white;
+}
+
+.deletar {
+    background-color: #dc3545;
+    color: white;
+}
